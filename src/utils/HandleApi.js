@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = "https://fullstack-todo-app-yt-backend.onrender.com"
+const baseUrl = "https://node-todo-backend-zi3l.onrender.com"
 
 const getAllToDo = (setToDo) => {
     axios
@@ -27,7 +27,7 @@ const addToDo = (text, setText, setToDo) => {
 const updateToDo = (toDoId, text, setToDo, setText, setIsUpdating) => {
 
     axios
-        .post(`${baseUrl}/update`, { _id: toDoId, text })
+        .put(`${baseUrl}/update`, { _id: toDoId, text })
         .then((data) => {
             setText("")
             setIsUpdating(false)
@@ -37,10 +37,10 @@ const updateToDo = (toDoId, text, setToDo, setText, setIsUpdating) => {
 
 }
 
-const deleteToDo = (_id, setToDo) => {
+const deleteToDo = (id, setToDo) => {
 
     axios
-        .post(`${baseUrl}/delete`, { _id })
+        .delete(`${baseUrl}/delete`, { _id:id })
         .then((data) => {
             console.log(data)
             getAllToDo(setToDo)
